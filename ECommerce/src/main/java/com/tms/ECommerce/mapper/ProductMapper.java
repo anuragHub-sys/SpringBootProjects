@@ -1,6 +1,7 @@
 package com.tms.ECommerce.mapper;
 
 import com.tms.ECommerce.dto.ProductDTO;
+import com.tms.ECommerce.entity.Category;
 import com.tms.ECommerce.entity.Product;
 
 public class ProductMapper {
@@ -13,5 +14,14 @@ public class ProductMapper {
         productDTO.setPrice(product.getPrice());
         productDTO.setCategoryId(product.getCategory().getId());
         return productDTO;
+    }
+
+    public static Product toProductEntity(ProductDTO productDTO, Category categoryId){
+        Product product = new Product();
+        product.setName(productDTO.getName());
+        product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
+        product.setCategory(categoryId);
+        return product;
     }
 }

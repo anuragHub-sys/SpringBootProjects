@@ -1,8 +1,5 @@
 package com.tms.ECommerce.dto;
 
-import com.tms.ECommerce.entity.Category;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
