@@ -3,6 +3,7 @@ package com.tms.ECommerce.service;
 import com.tms.ECommerce.dto.ProductDTO;
 import com.tms.ECommerce.entity.Category;
 import com.tms.ECommerce.entity.Product;
+import com.tms.ECommerce.exception.CategoryNotFoundException;
 import com.tms.ECommerce.mapper.ProductMapper;
 import com.tms.ECommerce.repository.CetegoryRepository;
 import com.tms.ECommerce.repository.ProductRepository;
@@ -15,7 +16,8 @@ public class ProductService {
     private CetegoryRepository cetegoryRepository;
     private ProductRepository productRepository;
     public ProductDTO getProductCreateService(ProductDTO productDTO){
-        Category categoryId = cetegoryRepository.findById(productDTO.getCategoryId()).orElseThrow(()->new RuntimeException("Category not found"));
+        Category categoryId = cetegoryRepository.findById(productDTO.getCategoryId()).orElseThrow(()->new CategoryNotFoundException("Category "+ productDTO.getCategoryId()+" not found"));
+        //Category categoryId = cetegoryRepository.findById(productDTO.getCategoryId()).orElseThrow(()->new CategoryNotFoundException("Category not found"));
         Product product = ProductMapper.toProductEntity(productDTO, categoryId);
         product = productRepository.save(product);
         return ProductMapper.toProductDTO(product);
